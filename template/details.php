@@ -4,7 +4,7 @@
         <div class="p-4 col-lg-8">
           <h4 class="mb-3 text-white" style="font-weight:bold"><?= ProductList()[$_GET['id']]['title'] ?> - <?= ProductList()[$_GET['id']]['price'] ?>€ </h4>
           <div class="blockquote text-muted">
-            <p class="mb-0" style="color:white"><?= ProductList()[$_GET['id']]['desc'] ?></p>
+            <p class="mb-0" style="color:white"><?= ProductList()[$_GET['id']]['description'] ?></p>
           </div>
           <a class="btn btn-info" href="index.php">Retour </a>
 

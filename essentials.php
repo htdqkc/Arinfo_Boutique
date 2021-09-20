@@ -19,6 +19,38 @@ Init();
     $template['details'] = ob_get_clean();
     
 function ProductList(){
+	
+	$connexion = new PDO("mysql:host=localhost;dbname=arinfoboutiquev2", 'root', ''); // connexion à la BDD
+ 
+	$resultats=$connexion->query("SELECT * FROM articles"); // on va chercher tous les membres de la table qu'on trie par ordre croissant
+	$resultats->setFetchMode(PDO::FETCH_OBJ); // on dit qu'on veut que le résultat soit récupérable sous forme d'objet
+$hostdb = 'localhost';
+$namedb = 'arinfoboutiquev2';
+$userdb = 'root';
+$passdb = '';
+
+try {
+  // Connect and create the PDO object
+  $conn = new PDO("mysql:host=$hostdb; dbname=$namedb", $userdb, $passdb);
+  $conn->exec("SET CHARACTER SET utf8");      // Sets encoding UTF-8
+
+  // Define and perform the SQL SELECT query
+  $sql = "SELECT * FROM `articles`";
+  $result = $conn->query($sql);
+
+  // Parse returned data, and displays them
+  while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+     $produit[] = $row;
+  }
+
+  $conn = null;        // Disconnect
+}
+catch(PDOException $e) {
+  echo $e->getMessage();
+}
+
+	
+	
     $produits = [
         0 => [
             'title'=>'Rolex Or',
@@ -55,7 +87,9 @@ function ProductList(){
         ],
  
     ];
-    return $produits;
+
+    return $produit;
+
 }
 function displayArticle(){
     $articles = ProductList();
