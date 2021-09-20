@@ -10,39 +10,36 @@ include('essentials.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         type="text/css">
     <link rel="stylesheet" href="theme.css" type="text/css">
-    <script type="text/javascript" src="index.js" ></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="index.js"></script>
 </head>
 
 <body>
+    <?php
+    if(isset($_GET['remove'])){
+        session_destroy();
+        header('location: index.php');
+    }
+	if(isset($_POST['username'])){
+		$u = addslashes(htmlspecialchars($_POST['username']));
+		$p = addslashes(htmlspecialchars($_POST['password']));
+		$error = "Mot de passe incorrect";
+		
+		if(VerifyLogin($u,$p)){
+			$error = "Vous êtes connecté";
+			header('location: pannier.php');
+		}
+	}
+    ?>
     <?= @$template['navbar'] ?>
-    <?= @$template['pannier'] ?>
-    <div class="py-5 text-center">
-    <div class="container">
-      <div class="row">
-        <div class="bg-white p-5 mx-auto col-md-8 col-10">
-          <h3 class="display-3">Payement</h3>
-          <p class="mb-3 lead">Cout total : <span id="pannierCountFinal">Chargement</span>.</p>
-          <a class="btn btn-outline-danger" href="index.php?remove=true">Vider mon pannier</a>
-		  
-		     <?php
-	   if(!isset($_SESSION['loggin'])){ 
-		?>        <a class="btn btn-outline-success" href="login.php">Connecter vous et payer</a>
-	   <?php 
-	   } else {
-		 ?>
-		           <a class="btn btn-outline-success" href="recap.php">Payer</a>
-	   <?php
-	   }
-	   ?>
-  
-      </div>
-    </div>
-  </div>
-
+    <form method="post">
+		<input type="text" name="username" placeholder="username">
+		<input type="password" name="password" placeholder="password">
+		<p><?= @$error ?></p>
+		<button>Se connecter</button>
+	</form>
     <?= @$template['footer'] ?>
-
-
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">

@@ -16,7 +16,7 @@ include('essentials.php');
 <body>
     <?= @$template['navbar'] ?>
     <?php
-    session_destroy();
+    unset($_SESSION['pannier']);
     ?>
     <div class="py-5 text-center">
         <div class="container">
