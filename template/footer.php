@@ -1,4 +1,4 @@
-<div class="py-3">
+<div class="py-3 bg-danger">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">

@@ -21,7 +21,7 @@ include('essentials.php');
       <div class="row">
         <div class="bg-white p-5 mx-auto col-md-8 col-10">
           <h3 class="display-3">Payement</h3>
-          <p class="mb-3 lead">Cout total : <span id="pannierCountFinal">Chargement</span>.</p>
+
           <a class="btn btn-outline-danger" href="index.php?remove=true">Vider mon pannier</a>
 		  
 		     <?php
@@ -30,7 +30,7 @@ include('essentials.php');
 	   <?php 
 	   } else {
 		 ?>
-		           <a class="btn btn-outline-success" href="recap.php">Payer</a>
+		           <a class="btn btn-outline-success" href="recap.php">Passer au payement</a>
 	   <?php
 	   }
 	   ?>
